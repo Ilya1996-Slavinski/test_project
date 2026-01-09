@@ -1,4 +1,4 @@
-package ui;
+package сom.ui;
 
 import org.testng.annotations.Test;
 import ui.pages.MainPage;

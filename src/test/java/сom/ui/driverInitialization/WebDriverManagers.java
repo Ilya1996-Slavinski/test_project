@@ -1,4 +1,4 @@
-package ui.driverInitialization;
+package сom.ui.driverInitialization;
 
 import org.openqa.selenium.WebDriver;
 
