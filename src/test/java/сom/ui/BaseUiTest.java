@@ -1,18 +1,19 @@
-package ui;
+package сom.ui;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import ui.driverInitialization.BrowserTypes;
-import ui.driverInitialization.DriverFactory;
+import сom.ui.driverInitialization.BrowserTypes;
+import сom.ui.driverInitialization.DriverFactory;
+import сom.ui.driverInitialization.RunMode;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.Duration;
 import java.util.Properties;
 
-import static ui.driverInitialization.DriverFactory.quitWebDriver;
+import static сom.ui.driverInitialization.DriverFactory.quitWebDriver;
 
 
 public abstract class BaseUiTest {
@@ -25,14 +26,16 @@ public abstract class BaseUiTest {
     }
 
     @BeforeMethod
-    public void setUp() {
-        this.driver = DriverFactory.getInstanceOfDriver(BrowserTypes.CHROME);
+    public void setUp() throws Exception {
+        this.driver = DriverFactory.getInstanceOfDriver(BrowserTypes.EDGE, RunMode.GRID);
+        driver.manage().window().maximize();
+      driver.get("https://automationintesting.online");
         this.wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-        String baseUrl = config.getProperty("ui.base.url");
-        if (baseUrl == null || baseUrl.isBlank()) {
-            throw new IllegalStateException("Configuration of URL is empty or null");
-        }
-        driver.get(baseUrl);
+//        String baseUrl = config.getProperty("ui.base.url");
+//        if (baseUrl == null || baseUrl.isBlank()) {
+//            throw new IllegalStateException("Configuration of URL is empty or null");
+//        }
+//        driver.get(baseUrl);
     }
 
     @AfterMethod
