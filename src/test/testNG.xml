@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="FullParallelSuite" parallel="tests" thread-count="3">
-    <test name="ChromeTest">
-        <parameter name="browser" value="chrome"/>
-        <classes><class name="сom.ui.FirstTest"/></classes>
-    </test>
+<suite name="Grid Parallel Suite" parallel="methods" thread-count="3">
+    <test name="Chrome tests">
+        <groups>
+            <run>
+                <include name="grid"/>
+            </run>
+        </groups>
 
-    <test name="FirefoxTest">
-        <parameter name="browser" value="firefox"/>
-        <classes><class name="сom.ui.FirstTest"/></classes>
-    </test>
-
-    <test name="EdgeTest">
-        <parameter name="browser" value="edge"/>
-        <classes><class name="сom.ui.FirstTest"/></classes>
+        <classes>
+            <class name="сom.ui.FirstTest">
+            </class>
+        </classes>
     </test>
 </suite>
+
+
